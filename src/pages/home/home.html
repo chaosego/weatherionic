@@ -1,14 +1,49 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Weather Ionic
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-card no-margin>
+
+    <ion-item-divider color="light">
+      City Map
+    </ion-item-divider>
+    <img src="https://maps.googleapis.com/maps/api/staticmap?center=London&size=600x300"/>
+
+    <ion-item-divider color="light">
+      Location Details
+    </ion-item-divider>
+
+    <ion-item> City: {{ weatherInfo.name }} </ion-item>
+    <ion-item *ngIf="weatherInfo.sys"> City: {{ weatherInfo.sys.country }} </ion-item>
+    <ion-item *ngIf="weatherInfo.coord"> Coordinates {{ weatherInfo.coord.lon}}, {{weatherInfo.coord.lat}}</ion-item>
+  </ion-card>
+
+  <ion-card no-margin>
+    <ion-item-divider color="light">
+      Weather Details
+    </ion-item-divider>
+
+    <ion-item *ngIf="weatherInfo.main"> Temperature: {{ weatherInfo.main.temp }} Kelvin</ion-item>
+
+    <ion-item *ngIf="weatherInfo.main"> Pressure: {{ weatherInfo.main.pressure }} mmHg</ion-item>
+
+    <ion-item *ngIf="weatherInfo.main"> Humidity: {{ weatherInfo.main.humidity }} %</ion-item>
+  </ion-card>
+
+  <ion-card no-margin *ngIf="weatherInfo.wind">
+    <ion-item-divider color="light">
+      Wind Details
+    </ion-item-divider>
+    <ion-item>
+      Speed {{ weatherInfo.wind.speed }} m/sec
+    </ion-item>
+    <ion-item>
+      Angle {{ weatherInfo.wind.deg }} deg
+    </ion-item>
+  </ion-card>
 </ion-content>

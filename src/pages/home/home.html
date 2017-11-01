@@ -7,12 +7,21 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="City Name" [(ngModel)]="cityName"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button  no-margin ion-button block (click)="getData()">Show Weather</button>
+  <br/>
   <ion-card no-margin>
 
     <ion-item-divider color="light">
       City Map
     </ion-item-divider>
-    <img src="https://maps.googleapis.com/maps/api/staticmap?center=London&size=600x300"/>
+    <img src="https://maps.googleapis.com/maps/api/staticmap?center={{cityName}}&size=600x300"/>
 
     <ion-item-divider color="light">
       Location Details
